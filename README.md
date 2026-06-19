@@ -13,8 +13,8 @@ La aplicación resuelve un problema logístico concreto: calcular el costo total
 
 ## 🚀 Enlaces del Proyecto
 
-- **🌐 Demo en Producción (Render):** https://tu-link.onrender.com
-- **🎥 Video Explicativo:** Enlace al video de YouTube/Drive próximamente...
+* **🌐 Demo en Producción (Render):** [Enlace a la demo en Render](https://sevenmo-semestre-minicore-delivery-cost.onrender.com)
+* **🎥 Video Explicativo:** [Ver en YouTube (Arquitectura MVC / MVT explicada en Django)](https://youtu.be/lTLIewweAk4)
 
 ---
 
