@@ -1,0 +1,137 @@
+// Variables
+$primary-color: #0056b3;
+$primary-hover: #004494;
+$bg-color: #f4f7f6;
+$text-main: #333;
+$text-light: #666;
+$border-color: #ddd;
+
+// Estilos Globales
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: $bg-color;
+    color: $text-main;
+    padding: 2rem;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+// Bloque Report (BEM)
+.report {
+    background: #ffffff;
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+
+    &__header {
+        margin-bottom: 2rem;
+        border-bottom: 2px solid $primary-color;
+        padding-bottom: 1rem;
+    }
+
+    &__title {
+        margin: 0 0 0.5rem 0;
+        font-size: 1.8rem;
+    }
+
+    &__description {
+        margin: 0;
+        color: $text-light;
+    }
+}
+
+// Bloque Form Filter (BEM)
+.form-filter {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+    margin-bottom: 2rem;
+    background-color: #fcfcfc;
+    padding: 1.5rem;
+    border-radius: 6px;
+    border: 1px solid $border-color;
+
+    &__group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    &__label {
+        font-weight: 600;
+        font-size: 0.9rem;
+    }
+
+    &__input {
+        padding: 0.6rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-family: inherit;
+        outline: none;
+
+        &:focus {
+            border-color: $primary-color;
+        }
+    }
+
+    &__button {
+        padding: 0.7rem 1.5rem;
+        background-color: $primary-color;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: $primary-hover;
+        }
+    }
+}
+
+// Bloque Table Data (BEM)
+.table-data {
+    width: 100%;
+    border-collapse: collapse;
+
+    &__header {
+        background-color: #f1f5f9;
+        text-align: left;
+    }
+
+    &__header-cell {
+        padding: 12px 15px;
+        font-weight: 600;
+        color: #475569;
+        border-bottom: 2px solid $border-color;
+    }
+
+    &__cell {
+        padding: 12px 15px;
+        border-bottom: 1px solid $border-color;
+
+        &--highlight {
+            color: $primary-color;
+            font-size: 1.1rem;
+        }
+    }
+
+    &__row {
+        transition: background-color 0.1s ease;
+
+        &:hover {
+            background-color: #f8fafc;
+        }
+
+        &--empty {
+            text-align: center;
+            color: $text-light;
+            font-style: italic;
+            padding: 2rem;
+        }
+    }
+}

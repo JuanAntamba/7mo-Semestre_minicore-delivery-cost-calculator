@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte de Logística | Mini Core</title>
+    <link rel="stylesheet" href="{% static 'scss/main.css' %}">
+</head>
+<body>
+
+    <main class="report">
+        <header class="report__header">
+            <h1 class="report__title">Costo de Envíos por Repartidor</h1>
+            <p class="report__description">Selecciona un rango de fechas para calcular los costos logísticos generados.</p>
+        </header>
+
+        <section class="report__controls">
+            <form class="form-filter" method="GET" action="{% url 'reporte_costos' %}">
+                <div class="form-filter__group">
+                    <label class="form-filter__label" for="fecha_inicio">Fecha Inicio:</label>
+                    <input class="form-filter__input" type="date" id="fecha_inicio" name="fecha_inicio" value="{{ fecha_inicio|default_if_none:'' }}" required>
+                </div>
+                
+                <div class="form-filter__group">
+                    <label class="form-filter__label" for="fecha_fin">Fecha Fin:</label>
+                    <input class="form-filter__input" type="date" id="fecha_fin" name="fecha_fin" value="{{ fecha_fin|default_if_none:'' }}" required>
+                </div>
+
+                <button class="form-filter__button" type="submit">Calcular Costos</button>
+            </form>
+        </section>
+
+        <section class="report__results">
+            <table class="table-data">
+                <thead>
+                    <tr class="table-data__header">
+                        <th class="table-data__header-cell">Repartidor</th>
+                        <th class="table-data__header-cell">Envíos</th>
+                        <th class="table-data__header-cell">Total kg</th>
+                        <th class="table-data__header-cell">Zona</th>
+                        <th class="table-data__header-cell">Tarifa/kg</th>
+                        <th class="table-data__header-cell">Costo Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if resultados %}
+                        {% for fila in resultados %}
+                            <tr class="table-data__row">
+                                <td class="table-data__cell">{{ fila.nombre }}</td>
+                                <td class="table-data__cell">{{ fila.envios }}</td>
+                                <td class="table-data__cell">
+                                    {% if fila.total_kg == '—' %}—{% else %}{{ fila.total_kg }} kg{% endif %}
+                                </td>
+                                <td class="table-data__cell">{{ fila.zona }}</td>
+                                <td class="table-data__cell">
+                                    {% if fila.tarifa == '—' %}—{% else %}${{ fila.tarifa }}{% endif %}
+                                </td>
+                                <td class="table-data__cell table-data__cell--highlight">
+                                    <strong>{% if fila.costo == 0.00 %}$0.00 (No aplica){% else %}${{ fila.costo|floatformat:2 }}{% endif %}</strong>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% else %}
+                        <tr class="table-data__row">
+                            <td class="table-data__cell table-data__row--empty" colspan="6">
+                                Ingresa un rango de fechas para visualizar los datos. (Prueba con Mayo 2025).
+                            </td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+</body>
+</html>
